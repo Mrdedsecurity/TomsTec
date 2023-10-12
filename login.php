@@ -2,10 +2,10 @@
 session_start();
 
 // Database connection
-$dbHost = "your_host";
-$dbUsername = "your_username";
-$dbPassword = "your_password";
-$dbName = "your_database";
+$dbHost = "mysql:host=localhost;dbname=website";
+$dbUsername = "root";
+$dbPassword = "changeme";
+$dbName = "website";
 
 $conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 
@@ -22,3 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($user && password_verify($password, $user["password"])) {
         $_SESSION["user_id"] = $
+
+        if (isset($_SESSION["user_id"])) {
+            echo "Successful login";
+        } else {
+            echo "Access denied. Please login first.";
+            // You can redirect the user to the login page here if needed
+        }
+        ?>
